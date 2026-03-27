@@ -10,6 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- ==================== CUSTOM CURSOR ==================== -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ==================== LOADER ==================== -->
+  <div class="loader" id="loader">
+    <div class="loader-text">
+      <span>M</span><span class="loader-accent">K</span>
+    </div>
+    <div class="loader-bar"><div class="loader-fill"></div></div>
+  </div>
+
   <!-- ==================== HEADER / NAV ==================== -->
   <header id="header">
     <div class="nav-container">
@@ -41,25 +52,44 @@
 
   <!-- ==================== HERO ==================== -->
   <section id="hero" class="hero">
-    <div class="hero-bg-overlay"></div>
-    <div class="hero-particles" id="particles"></div>
-    <div class="hero-content">
-      <p class="hero-tag">| OPERATIONS &amp; TECH</p>
-      <h1 class="hero-title">
-        <span class="line1">Building</span>
-        <span class="line2">the Bridge</span>
-      </h1>
-      <div class="hero-right">
-        <h1 class="hero-title-right">
-          <span class="line3">between</span>
-          <span class="line4">Order &amp; Code.</span>
+    <!-- 3D Scene Container - everything inside tilts together -->
+    <div class="hero-scene" id="heroScene">
+
+      <!-- Background layers for depth -->
+      <div class="hero-bg-overlay" data-depth="0.02"></div>
+      <canvas class="hero-canvas" id="heroCanvas" data-depth="0.03"></canvas>
+
+      <!-- Atmospheric green orb - deep layer -->
+      <div class="hero-orb" id="heroOrb" data-depth="0.06"></div>
+
+      <!-- Fog / mist layers -->
+      <div class="hero-fog fog-1" data-depth="0.04"></div>
+      <div class="hero-fog fog-2" data-depth="0.05"></div>
+
+      <!-- Floating particles layer -->
+      <div class="hero-particles" id="particles" data-depth="0.08"></div>
+
+      <!-- Content - foreground layer -->
+      <div class="hero-content" data-depth="0.04">
+        <p class="hero-tag anim-reveal">| OPERATIONS &amp; TECH</p>
+        <h1 class="hero-title">
+          <span class="anim-word-wrap"><span class="anim-word">Building</span></span>
+          <span class="anim-word-wrap"><span class="anim-word">the Bridge</span></span>
         </h1>
-        <p class="hero-desc">I bring 10+ years of administrative expertise together with modern tech skills to deliver organized, efficient, and impactful results.</p>
+        <div class="hero-right">
+          <h1 class="hero-title-right">
+            <span class="anim-word-wrap"><span class="anim-word">between</span></span>
+            <span class="anim-word-wrap"><span class="anim-word">Order &amp; Code.</span></span>
+          </h1>
+          <p class="hero-desc anim-fade-up">I bring 10+ years of administrative expertise together with modern tech skills to deliver organized, efficient, and impactful results.</p>
+        </div>
+        <a href="#contact" class="btn btn-hero anim-fade-up">Contact Me <span class="btn-dot"></span></a>
+        <div class="scroll-hint anim-fade-up">+ Scroll to explore</div>
       </div>
-      <a href="#contact" class="btn btn-hero">Contact Me <span class="btn-dot"></span></a>
-      <div class="scroll-hint">+ Scroll to explore</div>
     </div>
-    <nav class="hero-bottom-nav">
+
+    <!-- Bottom nav stays fixed, not part of 3D scene -->
+    <nav class="hero-bottom-nav anim-fade-up">
       <a href="#hero" class="hbn-link active">Home</a>
       <a href="#about" class="hbn-link">About</a>
       <a href="#experience" class="hbn-link">Experience</a>
@@ -70,9 +100,9 @@
   <!-- ==================== ABOUT ==================== -->
   <section id="about" class="section about">
     <div class="container">
-      <h2 class="section-tag">| ABOUT ME</h2>
+      <h2 class="section-tag scroll-reveal">| ABOUT ME</h2>
       <div class="about-grid">
-        <div class="about-text">
+        <div class="about-text scroll-reveal">
           <h3 class="section-title">Detail-oriented professional <span class="accent">bridging</span> admin &amp; tech.</h3>
           <p>Detail-oriented administrative professional with 10+ years of experience supporting operations, managing records, and providing client-centered service. Skilled in scheduling, file maintenance, reporting support, and professional communication.</p>
           <p>Experienced working with diverse populations and maintaining confidentiality. Fully authorized to work in the U.S. without sponsorship. Seeking a full-time role with long-term growth potential.</p>
@@ -92,21 +122,21 @@
           </div>
         </div>
         <div class="about-visual">
-          <div class="glow-card">
+          <div class="glow-card tilt-card scroll-reveal" style="--delay: 0s">
             <div class="glow-card-inner">
               <span class="glow-icon">&#9670;</span>
               <h4>Admin &amp; Operations</h4>
               <p>Scheduling, recordkeeping, file maintenance, report preparation, correspondence management</p>
             </div>
           </div>
-          <div class="glow-card">
+          <div class="glow-card tilt-card scroll-reveal" style="--delay: 0.15s">
             <div class="glow-card-inner">
               <span class="glow-icon">&#9670;</span>
               <h4>Technology</h4>
               <p>Python, JavaScript, HTML/CSS, Git, Microsoft 365, Google Workspace, Adobe Suite</p>
             </div>
           </div>
-          <div class="glow-card">
+          <div class="glow-card tilt-card scroll-reveal" style="--delay: 0.3s">
             <div class="glow-card-inner">
               <span class="glow-icon">&#9670;</span>
               <h4>Languages</h4>
@@ -121,12 +151,12 @@
   <!-- ==================== EXPERIENCE ==================== -->
   <section id="experience" class="section experience">
     <div class="container">
-      <h2 class="section-tag">| EXPERIENCE</h2>
-      <h3 class="section-title">Professional <span class="accent">Journey</span></h3>
+      <h2 class="section-tag scroll-reveal">| EXPERIENCE</h2>
+      <h3 class="section-title scroll-reveal">Professional <span class="accent">Journey</span></h3>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item scroll-reveal" style="--delay: 0s">
           <div class="timeline-dot"></div>
-          <div class="timeline-card">
+          <div class="timeline-card tilt-card">
             <span class="timeline-date">2020 — 2024</span>
             <h4>Entrepreneur / Operations Coordinator</h4>
             <p class="timeline-company">Self Employed — Iran &amp; Sweden</p>
@@ -139,9 +169,9 @@
             </ul>
           </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item scroll-reveal" style="--delay: 0.15s">
           <div class="timeline-dot"></div>
-          <div class="timeline-card">
+          <div class="timeline-card tilt-card">
             <span class="timeline-date">2017 — 2023</span>
             <h4>Business Owner / Manager</h4>
             <p class="timeline-company">Shoroosh Language Institute — Iran</p>
@@ -154,9 +184,9 @@
             </ul>
           </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item scroll-reveal" style="--delay: 0.3s">
           <div class="timeline-dot"></div>
-          <div class="timeline-card">
+          <div class="timeline-card tilt-card">
             <span class="timeline-date">2008 — 2018</span>
             <h4>Part Time Language Instructor</h4>
             <p class="timeline-company">KishAir &amp; FaraMehr Institutes — Iran &amp; Online</p>
@@ -167,9 +197,9 @@
             </ul>
           </div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item scroll-reveal" style="--delay: 0.45s">
           <div class="timeline-dot"></div>
-          <div class="timeline-card">
+          <div class="timeline-card tilt-card">
             <span class="timeline-date">2017</span>
             <h4>Volunteer Teacher</h4>
             <p class="timeline-company">Darolekram &amp; Children of Persia — Iran</p>
@@ -185,45 +215,45 @@
   <!-- ==================== SKILLS ==================== -->
   <section id="skills" class="section skills">
     <div class="container">
-      <h2 class="section-tag">| SKILLS</h2>
-      <h3 class="section-title">Core <span class="accent">Competencies</span></h3>
+      <h2 class="section-tag scroll-reveal">| SKILLS</h2>
+      <h3 class="section-title scroll-reveal">Core <span class="accent">Competencies</span></h3>
       <div class="skills-grid">
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0s">
           <div class="skill-icon">&#9881;</div>
           <h4>Administrative Support</h4>
           <p>Office support, file maintenance, recordkeeping, report preparation, data tracking</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.08s">
           <div class="skill-icon">&#128197;</div>
           <h4>Scheduling &amp; Coordination</h4>
           <p>Appointment scheduling, reminder calls, staff calendar coordination, time management</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.16s">
           <div class="skill-icon">&#128274;</div>
           <h4>Confidentiality</h4>
           <p>Handling confidential information, compliance with business requirements, secure recordkeeping</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.24s">
           <div class="skill-icon">&#128187;</div>
           <h4>Microsoft Office 365</h4>
           <p>Outlook, Word, Excel, PowerPoint — skilled proficiency across the full suite</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">&#60;/&#62;</div>
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.32s">
+          <div class="skill-icon">&lt;/&gt;</div>
           <h4>Web Development</h4>
           <p>Python, JavaScript, HTML, CSS, Git, Linux</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.4s">
           <div class="skill-icon">&#127912;</div>
           <h4>Design &amp; Creative</h4>
           <p>Adobe Photoshop, Illustrator, After Effects, AutoCAD</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.48s">
           <div class="skill-icon">&#127760;</div>
           <h4>Google Workspace</h4>
           <p>Docs, Sheets, Drive, Calendar — cloud-first productivity and collaboration</p>
         </div>
-        <div class="skill-card">
+        <div class="skill-card tilt-card scroll-reveal" style="--delay: 0.56s">
           <div class="skill-icon">&#128172;</div>
           <h4>Communication</h4>
           <p>Strong written &amp; verbal skills; fluent in English, native Persian, basic Italian</p>
@@ -235,16 +265,16 @@
   <!-- ==================== EDUCATION ==================== -->
   <section id="education" class="section education">
     <div class="container">
-      <h2 class="section-tag">| EDUCATION</h2>
-      <h3 class="section-title">Academic <span class="accent">Background</span></h3>
+      <h2 class="section-tag scroll-reveal">| EDUCATION</h2>
+      <h3 class="section-title scroll-reveal">Academic <span class="accent">Background</span></h3>
       <div class="edu-grid">
-        <div class="edu-card">
+        <div class="edu-card tilt-card scroll-reveal" style="--delay: 0s">
           <div class="edu-icon">&#127891;</div>
           <h4>Master of English and Anglo-American Studies</h4>
           <p class="edu-school">Sapienza University — Italy</p>
           <span class="edu-year">2023</span>
         </div>
-        <div class="edu-card">
+        <div class="edu-card tilt-card scroll-reveal" style="--delay: 0.15s">
           <div class="edu-icon">&#127891;</div>
           <h4>Bachelor of English Literature</h4>
           <p class="edu-school">Payame Noor University — Iran</p>
@@ -257,10 +287,10 @@
   <!-- ==================== CONTACT ==================== -->
   <section id="contact" class="section contact">
     <div class="container">
-      <h2 class="section-tag">| GET IN TOUCH</h2>
-      <h3 class="section-title">Let's <span class="accent">Connect</span></h3>
+      <h2 class="section-tag scroll-reveal">| GET IN TOUCH</h2>
+      <h3 class="section-title scroll-reveal">Let's <span class="accent">Connect</span></h3>
       <div class="contact-grid">
-        <div class="contact-info">
+        <div class="contact-info scroll-reveal">
           <div class="contact-item">
             <span class="contact-icon">&#128205;</span>
             <div>
@@ -279,7 +309,7 @@
             <a href="mailto:mitrakermanian1989@gmail.com" class="btn btn-contact">Send Email <span class="btn-dot"></span></a>
           </div>
         </div>
-        <form id="contactForm" class="contact-form">
+        <form id="contactForm" class="contact-form scroll-reveal" style="--delay: 0.15s">
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
